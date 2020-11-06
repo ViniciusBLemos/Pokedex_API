@@ -10,5 +10,5 @@ var pokemonSchema = new Schema({
 });
 
 
-var Pokrmon = model('Pokrmon', pokemonSchema);
+var Pokemon = model('Pokemon', pokemonSchema);
 export default Pokemon;

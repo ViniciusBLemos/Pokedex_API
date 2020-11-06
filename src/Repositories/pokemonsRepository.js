@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Pokedex from './db';
+import Pokedex from '../config/db';
 
 
 export default new class PokemonRepository {
@@ -25,8 +25,8 @@ export default new class PokemonRepository {
             height: pokemon.height,
             abilities: pokemon.abilities,
             //image: ,
-            
-            baseStats = {
+
+            baseStats : {
                 hp: pokemon.hp,
                 attack: pokemon.attack,
                 deffense: pokemon.deffense,
@@ -34,7 +34,7 @@ export default new class PokemonRepository {
                 specialDefense: pokemon.specialDefense,
                 speed: pokemon.speed,
                 total: pokemon.total
-            }   
+            }
         }
 
         return Pokemon.findByIdAndUpdate(id, updatedpokemon, { new: true });
