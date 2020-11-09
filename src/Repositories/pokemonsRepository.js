@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Pokedex from '../config/db';
+import Pokemon from '../models/Pokemon';
 
 
 export default new class PokemonRepository {
@@ -9,11 +10,11 @@ export default new class PokemonRepository {
     }
 
     getById(id) {
-        return Pokemon.findById(id);
+        return Pokedex.findById(id);
     }
 
     create(pokemon) {
-        return Pokemon.create(pokemon);
+        return Pokedex.create(Pokedex);
     }
 
     update(id, pokemon) {
@@ -24,7 +25,7 @@ export default new class PokemonRepository {
             species: pokemon.species,
             height: pokemon.height,
             abilities: pokemon.abilities,
-            //image: ,
+            // image: ,
 
             baseStats : {
                 hp: pokemon.hp,
@@ -37,11 +38,11 @@ export default new class PokemonRepository {
             }
         }
 
-        return Pokemon.findByIdAndUpdate(id, updatedpokemon, { new: true });
+        return Pokedex.findByIdAndUpdate(id, updatedpokemon, { new: true });
     }
 
     delete(id) {
-        return Person.findByIdAndRemove(id);
+        return Pokedex.findByIdAndRemove(id);
     }
 
 }

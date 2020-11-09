@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-import { getAll, getById, store, edit, remove } from '../Controllers/PokemonController';
+import PokemonController  from '../Controllers/PokemonController';
 
-router.get('/', getAll());
-router.get('/:id', getById());
-router.post('/', store());
-router.put('/:id', edit());
-router.remove('/:id', remove());
+router.get('/', PokemonController.getAll);
+router.get('/:id', PokemonController.getByTd);
+router.post('/', PokemonController.store);
+router.put('/:id', PokemonController.edit);
+router.delete('/:id', PokemonController.remove);
 
 export default router;

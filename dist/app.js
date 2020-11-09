@@ -10,10 +10,6 @@ var _express2 = _interopRequireDefault(_express);
 
 var _bodyParser = require('body-parser');
 
-var _server = require('./server');
-
-var _server2 = _interopRequireDefault(_server);
-
 var _pokemonRoute = require('./Routes/pokemonRoute');
 
 var _pokemonRoute2 = _interopRequireDefault(_pokemonRoute);
@@ -32,7 +28,6 @@ app.use((0, _bodyParser.urlencoded)({
 
 app.use((0, _bodyParser.json)());
 
-app.use('/', _server2.default);
 app.use('/pokemon', _pokemonRoute2.default);
 
 exports.default = app;
