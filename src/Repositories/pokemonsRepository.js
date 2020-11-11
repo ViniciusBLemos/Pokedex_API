@@ -1,20 +1,21 @@
-import mongoose from 'mongoose';
+import { string } from 'joi';
+import mongoose, { Schema } from 'mongoose';
 import Pokedex from '../config/db';
 import Pokemon from '../models/Pokemon';
 
 
-export default new class PokemonRepository {
+ class PokemonRepository {
 
     getAll() {
         return Pokemon.find();
     }
 
-    getById(id) {
-        return Pokedex.findById(id);
+    async getById(id) {
+        return Pokemon.findById(id);
     }
 
-    create(pokemon) {
-        return Pokedex.create(Pokedex);
+    async create(pokemon) {
+        return Pokemon.create(pokemon);
     }
 
     update(id, pokemon) {
@@ -24,13 +25,14 @@ export default new class PokemonRepository {
             type: pokemon.type,
             species: pokemon.species,
             height: pokemon.height,
+            weight: pokemon.weight,
             abilities: pokemon.abilities,
             // image: ,
 
             baseStats : {
                 hp: pokemon.hp,
                 attack: pokemon.attack,
-                deffense: pokemon.deffense,
+                defense: pokemon.defense,
                 specialAttack: pokemon.specialAttack,
                 specialDefense: pokemon.specialDefense,
                 speed: pokemon.speed,
@@ -41,8 +43,10 @@ export default new class PokemonRepository {
         return Pokedex.findByIdAndUpdate(id, updatedpokemon, { new: true });
     }
 
-    delete(id) {
-        return Pokedex.findByIdAndRemove(id);
+    async delete(id) {
+        return Pokemon.findByIdAndRemove(id);
     }
 
 }
+
+export default new PokemonRepository();

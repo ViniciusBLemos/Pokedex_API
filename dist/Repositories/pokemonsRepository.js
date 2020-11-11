@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _joi = require('joi');
+
 var _mongoose = require('mongoose');
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
@@ -22,7 +24,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-exports.default = new (function () {
+var PokemonRepository = function () {
     function PokemonRepository() {
         _classCallCheck(this, PokemonRepository);
     }
@@ -34,13 +36,13 @@ exports.default = new (function () {
         }
     }, {
         key: 'getById',
-        value: function getById(id) {
-            return _db2.default.findById(id);
+        value: async function getById(id) {
+            return _Pokemon2.default.findById(id);
         }
     }, {
         key: 'create',
-        value: function create(pokemon) {
-            return _db2.default.create(_db2.default);
+        value: async function create(pokemon) {
+            return _Pokemon2.default.create(pokemon);
         }
     }, {
         key: 'update',
@@ -51,13 +53,14 @@ exports.default = new (function () {
                 type: pokemon.type,
                 species: pokemon.species,
                 height: pokemon.height,
+                weight: pokemon.weight,
                 abilities: pokemon.abilities,
                 // image: ,
 
                 baseStats: {
                     hp: pokemon.hp,
                     attack: pokemon.attack,
-                    deffense: pokemon.deffense,
+                    defense: pokemon.defense,
                     specialAttack: pokemon.specialAttack,
                     specialDefense: pokemon.specialDefense,
                     speed: pokemon.speed,
@@ -69,10 +72,12 @@ exports.default = new (function () {
         }
     }, {
         key: 'delete',
-        value: function _delete(id) {
-            return _db2.default.findByIdAndRemove(id);
+        value: async function _delete(id) {
+            return _Pokemon2.default.findByIdAndRemove(id);
         }
     }]);
 
     return PokemonRepository;
-}())();
+}();
+
+exports.default = new PokemonRepository();
